@@ -1,0 +1,302 @@
+openapi: 3.0.0
+info:
+  title: 02-Task-Management-API
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000/api/v1
+tags:
+  - name: Auth
+  - name: Users
+  - name: Projects
+  - name: Tasks
+paths:
+  /auth/register:
+    post:
+      tags:
+        - Auth
+      summary: Register User
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Hazem
+                email:
+                  type: string
+                  example: hazem@admin.com
+                password:
+                  type: string
+                  example: secret
+                bio:
+                  type: string
+                  example: >-
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                profilePicture:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Login User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: hazem@admin.com
+                password: secret
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /auth/logout:
+    get:
+      tags:
+        - Auth
+      summary: Logout User
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/:
+    get:
+      tags:
+        - Users
+      summary: Get All Users
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/4fbe8406-0805-4b17-8a3e-e7c2928762c4:
+    get:
+      tags:
+        - Users
+      summary: Get User By Id
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/b5184832-8621-447a-9ec2-74383d573f5a:
+    patch:
+      tags:
+        - Users
+      summary: Update User Data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: User | Updated
+                profilePicture:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/9d9b9680-a91e-44f2-927c-652064eb5698/role:
+    patch:
+      tags:
+        - Users
+      summary: Update User Role
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                role: ADMIN
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/12a0461a-bdc9-428a-9092-cf738b400518:
+    delete:
+      tags:
+        - Users
+      summary: Delete User
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /projects:
+    post:
+      tags:
+        - Projects
+      summary: Create Project
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: 'Project #2'
+                description: >-
+                  Duis aute irure dolor in reprehenderit in voluptate velit esse
+                  cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                  occaecat cupidatat non proident, sunt in culpa qui officia
+                  deserunt mollit anim id est laborum
+                teamMembers:
+                  - 4fbe8406-0805-4b17-8a3e-e7c2928762c4
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Projects
+      summary: Get All Projects
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /projects/7:
+    get:
+      tags:
+        - Projects
+      summary: Get Project By Id
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /projects/1:
+    patch:
+      tags:
+        - Projects
+      summary: Update Project
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Project#1 | UPDATED
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Projects
+      summary: Project Delete
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /tasks:
+    post:
+      tags:
+        - Tasks
+      summary: Create Task
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: 'Task #1'
+                description: >-
+                  Lorem ipsum odor amet, consectetuer adipiscing elit. Potenti
+                  mattis conubia risus mi duis suspendisse. Nunc urna ligula
+                  senectus risus finibus sociosqu euismod.
+                dueDate: 01/01/2025
+                projectId: 1
+                assignedToId: 4fbe8406-0805-4b17-8a3e-e7c2928762c4
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Tasks
+      summary: Get All Tasks
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Tasks
+      summary: Delete All Tasks
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /tasks/1:
+    get:
+      tags:
+        - Tasks
+      summary: Get Task By Id
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    patch:
+      tags:
+        - Tasks
+      summary: Update Task
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: TASK | UPDATED
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Tasks
+      summary: Delete Task
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /tasks/complete/3:
+    post:
+      tags:
+        - Tasks
+      summary: Mark As Completed
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
