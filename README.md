@@ -41,7 +41,7 @@
 Built with:
 
 <div align="center">
-  <img src="https://skillicons.dev/icons?i=js,nodejs,express,postgres,prisma" /><br>
+  <img src="https://skillicons.dev/icons?i=js,nodejs,express,postgres,prisma,gcp" /><br>
 </div>
 
 ## Getting Started
